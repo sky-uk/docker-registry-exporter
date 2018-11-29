@@ -1,0 +1,42 @@
+language: python
+services:
+  - docker
+env:
+  global:
+    - IMAGE_NAME=skycirrus/docker-registry-exporter
+    - GOSS_VERSION=0.3.5
+    - GOSS_PATH=/usr/local/bin/goss
+python:
+  - "3.6"
+before_install:
+  - sudo curl -L https://github.com/aelsabbahy/goss/releases/download/v$GOSS_VERSION/goss-linux-amd64 -o /usr/local/bin/goss
+  - sudo curl -L https://github.com/aelsabbahy/goss/releases/download/v$GOSS_VERSION/dgoss -o /usr/local/bin/dgoss
+  - sudo chmod +rx /usr/local/bin/goss
+  - sudo chmod +rx /usr/local/bin/dgoss
+install:
+  - pip install -r requirements.txt
+  - pip install -r dev-requirements.txt
+script:
+  # Ensure the script obeys PEP8 style guide
+  - flake8 --max-line-length=120 exporter/
+  # Run unit tests
+  - pytest
+  # Check coverage of unit tests and fail if <80%
+  - pytest --cov=exporter
+  # Run static code analysis for common security issues
+  - bandit exporter/*.py
+  # Check licenses of dependencies are permissive
+  - liccheck -s strategy.ini
+  # Check dependencies for known vulnerabilities
+  - safety check -r requirements.txt
+  # Package docker application
+  - docker build -t ${IMAGE_NAME}
+  # Run integrated test
+  - dgoss run -v ${PWD}/integrated-test:/repositories ${IMAGE_NAME} /repositories
+before_deploy:
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+deploy:
+  provider: script
+  script: docker-ci-deploy --version "$TRAVIS_TAG" --version-semver --version-latest "$IMAGE_NAME"
+  on:
+    tags: true
