@@ -30,7 +30,7 @@ script:
   # Check dependencies for known vulnerabilities
   - safety check -r requirements.txt
   # Package docker application
-  - docker build -t ${IMAGE_NAME}
+  - docker build -t ${IMAGE_NAME} .
   # Run integrated test
   - dgoss run -v ${PWD}/integrated-test:/repositories ${IMAGE_NAME} /repositories
 before_deploy:

@@ -19,9 +19,8 @@ class RegistryCollector:
     def _find_repositories(self):
         repositories = []
         for dirname, dirnames, filenames in os.walk(os.path.join(self._base_path, 'repositories')):
-            for subdirname in dirnames:
-                if subdirname == '_manifests':
-                    repositories.append(dirname.replace(os.path.join(self._base_path, 'repositories'), '')[1:])
+            if '_manifests' in dirnames:
+                repositories.append(dirname.replace(os.path.join(self._base_path, 'repositories'), '')[1:])
 
             # Don't need to recurse any further
             for terminaldirname in ['_manifests', '_layers', '_uploads']:

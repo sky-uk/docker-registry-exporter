@@ -1,4 +1,4 @@
-FROM python:3.6-alpine AS base
+FROM python:3.7-alpine AS base
 
 RUN \
  apk add --no-cache --virtual=build-dependencies \
@@ -26,7 +26,7 @@ COPY requirements.txt /requirements.txt
 
 RUN pip install --install-option="--prefix=/install" -r /requirements.txt
 
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
 COPY --from=base /install /usr/local
 COPY exporter /exporter
