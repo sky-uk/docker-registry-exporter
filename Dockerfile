@@ -4,19 +4,11 @@ RUN \
  apk add --no-cache --virtual=build-dependencies \
     autoconf \
     automake \
-    freetype-dev \
     g++ \
     gcc \
-    jpeg-dev \
-    lcms2-dev \
-    libffi-dev \
-    libpng-dev \
-    libwebp-dev \
     linux-headers \
     make \
-    openjpeg-dev \
     openssl-dev \
-    tiff-dev \
     zlib-dev
 
 RUN mkdir /install
