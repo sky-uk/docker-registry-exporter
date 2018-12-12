@@ -84,7 +84,8 @@ if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
 
     parser = argparse.ArgumentParser(description='Exports statistics from a private Docker registry')
-    parser.add_argument('path', help='File path to root of registry disk (eg. /var/lib/registry/docker/registry/v2/)')
+    parser.add_argument('path', help='File path to root of registry disk (eg. /var/lib/registry/docker/registry/v2/).' +
+                        ' This directory should contain subdirectories "repositories" and "blobs"')
     args = parser.parse_args()
 
     collector = RegistryCollector(args.path)
