@@ -1,0 +1,8 @@
+[run]
+branch = True
+include = exporter/exporter.py
+omit = tests/*
+
+[report]
+fail_under = 75.0
+show_missing = True

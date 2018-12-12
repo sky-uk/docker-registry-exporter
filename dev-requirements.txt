@@ -1,0 +1,7 @@
+pytest==3.2.5
+pytest-cov==2.5.1
+flake8==2.4.0
+liccheck2==0.1.4
+bandit==1.5.1
+safety==1.8.4
+docker-ci-deploy==0.3.0

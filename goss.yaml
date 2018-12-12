@@ -1,0 +1,25 @@
+http:
+  http://localhost:8080/metrics:
+    status: 200
+    timeout: 1000
+    body:
+    - 'repository_tags_total{repository="test/repository"} 3.0'
+    - 'repository_revisions_total{repository="test/repository"} 2.0'
+    - 'repository_tags_total{repository="test/repository/nested"} 1.0'
+    - 'repository_revisions_total{repository="test/repository/nested"} 1.0'
+    - 'repository_tag_layers_total{repository="test/repository",tag="latest"} 4.0'
+    - 'repository_tag_layers_total{repository="test/repository",tag="v1.1.0"} 4.0'
+    - 'repository_tag_layers_total{repository="test/repository",tag="v1.0.0"} 3.0'
+    - 'repository_tag_layers_total{repository="test/repository/nested",tag="latest"} 4.0'
+    - 'repository_tag_size_bytes{repository="test/repository",tag="latest"} 137451.0'
+    - 'repository_tag_size_bytes{repository="test/repository",tag="v1.1.0"} 137451.0'
+    - 'repository_tag_size_bytes{repository="test/repository",tag="v1.0.0"} 122487.0'
+    - 'repository_tag_size_bytes{repository="test/repository/nested",tag="latest"} 137451.0'
+port:
+  tcp:8080:
+    listening: true
+    ip:
+    - '0.0.0.0'
+process:
+  python:
+    running: true
