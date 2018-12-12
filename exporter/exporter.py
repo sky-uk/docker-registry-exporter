@@ -11,6 +11,8 @@ from twisted.web.server import Site
 
 logger = logging.getLogger(__name__)
 
+SHA256_PREFIX_LENGTH = len('sha256:')
+
 
 class RegistryCollector:
     def __init__(self, base_path):
@@ -37,7 +39,7 @@ class RegistryCollector:
         tags_path = os.path.join(self._base_path, 'repositories', repository, '_manifests', 'tags')
 
         with open(os.path.join(tags_path, tag, 'current', 'link'), 'r') as link_file:
-            manifest_id = link_file.readline()[7:].replace('\n', '')
+            manifest_id = link_file.readline()[SHA256_PREFIX_LENGTH:].replace('\n', '')
         with open(os.path.join(self._base_path, 'blobs', 'sha256', manifest_id[0:2], manifest_id, 'data'),
                   'r') as manifest_file:
             return json.load(manifest_file)
