@@ -35,6 +35,10 @@ class RegistryCollector:
         tags_path = os.path.join(self._base_path, 'repositories', repository, '_manifests', 'tags')
         return os.listdir(tags_path)
 
+    def _scrape_revisions(self, repository):
+        tags_path = os.path.join(self._base_path, 'repositories', repository, '_manifests', 'revisions', 'sha256')
+        return os.listdir(tags_path)
+
     def _scrape_manifest(self, repository, tag):
         tags_path = os.path.join(self._base_path, 'repositories', repository, '_manifests', 'tags')
 
@@ -47,6 +51,8 @@ class RegistryCollector:
     def collect(self):
         repository_tags_total = GaugeMetricFamily('repository_tags_total', 'Number of tags for each repo',
                                                   labels=['repository'])
+        repository_revisions_total = GaugeMetricFamily('repository_revisions_total',
+                                                       'Number of revisions for each repo', labels=['repository'])
         repository_tag_layers_total = GaugeMetricFamily('repository_tag_layers_total', 'Number of layers in each tag',
                                                         labels=['repository', 'tag'])
         repository_tag_size_bytes = GaugeMetricFamily('repository_tag_size_bytes', 'Size of each tag',
@@ -60,6 +66,8 @@ class RegistryCollector:
             logger.debug('Scanning %s for tags', repository)
             tags = self._scrape_tags(repository)
             repository_tags_total.add_metric([repository], len(tags))
+            revisions = self._scrape_revisions(repository)
+            repository_revisions_total.add_metric([repository], len(revisions))
             for tag in tags:
                 manifest = self._scrape_manifest(repository, tag)
                 repository_tag_layers_total.add_metric([repository, tag], len(manifest['layers']))
@@ -69,6 +77,7 @@ class RegistryCollector:
                 repository_tag_size_bytes.add_metric([repository, tag], size)
 
         yield repository_tags_total
+        yield repository_revisions_total
         yield repository_tag_layers_total
         yield repository_tag_size_bytes
 

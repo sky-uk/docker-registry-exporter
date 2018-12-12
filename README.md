@@ -52,9 +52,11 @@ volumes:
 
 ## Metrics produced
 
-The exporter produces three metrics:
+The exporter produces four metrics:
 
  * `repository_tags_total` - a Gauge representing the number of tags for each repository in the registry
+   * Labels: `repository`
+ * `repository_revisions_total` - a Gauge representing the number of revisions for each repository in the registry
    * Labels: `repository`
  * `repository_tag_layers_total` - a Gauge representing the number of layers for each tag for each repository in the registry
    * Labels: `repository`, `tag`
