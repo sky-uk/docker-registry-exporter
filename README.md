@@ -32,7 +32,7 @@ containers:
   - name: storage
     mountPath: /var/lib/registry
 
-- image: skycirrus/docker-registry-exporter:v1.0.0
+- image: skyuk/docker-registry-exporter:v1.0.0
   name: registry-exporter
   args:
     - /var/lib/registry/docker/registry/v2
