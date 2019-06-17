@@ -1,2 +1,2 @@
-Twisted==18.9.0
+Twisted==19.2.1
 prometheus_client==0.4.2
