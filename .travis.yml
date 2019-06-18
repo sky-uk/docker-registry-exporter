@@ -1,3 +1,4 @@
+dist: xenial
 language: python
 services:
   - docker
@@ -11,7 +12,7 @@ env:
     # REGISTRY_PASS=
     - secure: "D4I4uElXOoNfyCDeoOFGo3MqW0KdyI7jFmWisgrQrB2QN2cgeVQNWow0RF5TujApJrHM2p36YTFQI7tSy3Jp7EaqWj1Zf/L1mHhgbbbvTyrry/XaZ/Aa2j+yQrFGhdnuf4PDUw6ws1j94h1IhU1jdDvDIyFsX5QFZFMd/A9QUAwgPAC39I52zGDOnORCpRI4FKzF3MgV6IpmsIKMCT5uFo3A5F7jPBk62fU3bNMfS31KXMK5KW1XEzQQTTzbzmudDQhoKPNSqCJYx3FZK2RP2WOLge6wVWBQHhxsx6WwKlEdTgfgt1OVkYMMBCJMEvCNfcAqVqT8z/QJPgrWAgTwFx8Pjeklk43cX/s1JLMLMBGZe9OX6Q1dXKoTuRKfbJMqptL7jEaCfCdmG9MmOioJselbs++h0OX3xAQEv6r9zcs5V5lEUp1tDysRFsJ0jxpoPW5M0c61M0B3MCdrPrjpv3/QdZ2zZnTyXoqs7dTWs7o7jfOExEfgVZt4SOP5wAXL2azlwZmO/crm5lbeecVZGiW0ak2jRfdqWO/Zy26tdDkFa2L8XHhjccJ8fBHsWBcNl28E81FuN0DoLZJuqiJqIiPcVC546NOMPKnJxhaR5FlGGDwFjH0+RaAFqIAQa0KC6En37R8d1S515v9SECQQ0gUH7PU6GIVAytfx0G8tl/4="
 python:
-  - "3.6"
+  - "3.7"
 before_install:
   - sudo curl -L https://github.com/aelsabbahy/goss/releases/download/v$GOSS_VERSION/goss-linux-amd64 -o /usr/local/bin/goss
   - sudo curl -L https://github.com/aelsabbahy/goss/releases/download/v$GOSS_VERSION/dgoss -o /usr/local/bin/dgoss
