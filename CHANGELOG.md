@@ -1,6 +1,7 @@
 # 1.2.0
 
  * [dependencies] Bump twisted from 19.2.1 to 19.7.0 (#8)
+ * Update releasing instructions in `README.md` and `CONTRIBUTING.md`
 
 # 1.1.0
 

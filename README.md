@@ -69,7 +69,4 @@ Please see our [Contributing guidelines](/CONTRIBUTING.md) for more information.
 
 ## Releasing
 
-As a project maintainer, you will need to release this project to push a new Docker image to Docker Hub.
-
-Create a release in GitHub, with the contents of the Changelog for that release version.  This will create a tag, for
-which Travis will build and publish an image.
+See instructions in eponymous section in `CONTRIBUTING.md`

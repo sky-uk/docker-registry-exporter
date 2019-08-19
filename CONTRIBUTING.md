@@ -39,8 +39,10 @@ the full set of tests run by our build system.
 
 ## Releasing
 
-Once a pull request has been merged, the commit in master should be tagged with a new version number and pushed.
-Only maintainers are able to do this.
+As a project maintainer you will need to release this project to push a new Docker image to Docker Hub, e.g. once a pull request has been merged.
+
+Create a release in GitHub, with the contents of the Changelog for that release version. This will create a tag, for
+which Travis will build and publish an image.
 
 This project follows the [Semantic Versioning](https://semver.org/) specification, and version numbers
 should be chosen accordingly.
